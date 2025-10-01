@@ -15,4 +15,4 @@ I am a beginner in IT, currently learning **DevOps** practices and tools.
 
 ## Contacts
 - Email: greenmen263@gmail.com
-- GitHub: [greenmen263](https://github.com/greenmen263)
+- GitHub: [Maksym-Markevych](https://github.com/greenmen263)
