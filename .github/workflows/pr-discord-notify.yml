@@ -8,6 +8,29 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
+${{ secrets.DISCORD_WEBHOOK }}name: Notify Discord on PR Events
+
+on:
+  pull_request:
+    types: [opened, closed, reopened, synchronize]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send notification to Discord
+        uses: Ilshidur/action-discord@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          args: >
+            🚀 **Pull Request #${{ github.event.pull_request.number }}**
+            *${{ github.event.pull_request.title }}*  
+            by **${{ github.actor }}**
+
+            🔗 [View PR](${{ github.event.pull_request.html_url }})  
+            📂 Repository: ${{ github.repository }}  
+            📌 Action: ${{ github.event.action }}
       - name: Send Discord notification
         run: |
           curl -H "Content-Type: application/json" \
