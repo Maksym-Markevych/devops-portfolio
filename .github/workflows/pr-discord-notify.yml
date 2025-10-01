@@ -1,65 +1,8 @@
-name: Notify Discord on PR Events
-
-on:
-  pull_request:
-    types: [opened, closed, reopened, synchronize]
-
-jobs:
-  discord-notify:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Send Discord notification
-        uses: Ilshidur/action-discord@master
-        with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          message: |
-            PR ${{ github.event.pull_request.title }} by ${{ github.actor }}
-            URL: ${{ github.event.pull_request.html_url }}
-            Action: ${{ github.event.action }}
-name: Notify Discord on PR events
-
-on:
-  pull_request:
-    types: [opened, closed]
-
-jobs:
-  notify:
-    runs-on: ubuntu-latest
-    steps:
-${{ secrets.DISCORD_WEBHOOK }}name: Notify Discord on PR Events
-
-on:
-  pull_request:
-    types: [opened, closed, reopened, synchronize]
-
-jobs:
-  notify:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Send notification to Discord
-        uses: Ilshidur/action-discord@master
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        with:
-          args: >
-            🚀 **Pull Request #${{ github.event.pull_request.number }}**
-            *${{ github.event.pull_request.title }}*  
-            by **${{ github.actor }}**
-
-            🔗 [View PR](${{ github.event.pull_request.html_url }})  
-            📂 Repository: ${{ github.repository }}  
-            📌 Action: ${{ github.event.action }}
-      - name: Send Discord notification
-        run: |
-          curl -H "Content-Type: application/json" \
-          -X POST \
-          -d "{\"content\": \"📢 PR event in *${{ github.repository }}* \n➡️ Title: **${{ github.event.pull_request.title }}** \n✍️ Author: ${{ github.event.pull_request.user.login }} \n🔗 Link: ${{ github.event.pull_request.html_url }} \n📌 Action: ${{ github.event.action }}\"}" \
-          ${{ secrets.DISCORD_WEBHOOK_URL }}
 name: Discord PR Notifications
 
 on:
   pull_request:
-    types: [opened, closed, reopened]
+    types: [opened, closed, reopened, synchronize]
 
 jobs:
   notify-discord:
@@ -70,7 +13,7 @@ jobs:
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           message: |
-            🔔 New PR Event:
+            🔔 Pull Request Event:
             • **Action:** ${{ github.event.action }}
             • **Title:** ${{ github.event.pull_request.title }}
             • **Author:** ${{ github.actor }}
