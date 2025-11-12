@@ -14,5 +14,5 @@ I am a beginner in IT, currently learning **DevOps** practices and tools.
 - Contribute to open-source projects
 
 ## Contacts
-- Email: greenmen263@gmail.com
+- Email: maks.markevych@gmail.com
 - GitHub: [Maksym-Markevych](https://github.com/greenmen263)
